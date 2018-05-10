@@ -21,13 +21,13 @@
 # Structure
   - variable declaration
     - ```struct car \*mycar = malloc(sizeof(car));```
-    - '''(\*mycat).year = 2010'''
-	- same as '''mycar->year = 2011;'''
+    - ```(\*mycat).year = 2010```
+	- same as ```mycar->year = 2011;```
 # Custom Data Types
-  - '''typedef char\* string '''
+  - ```typedef char\* string ```
   - combine struct and typedef, we have
-    - '''typedef struct car {...} car_t;'''
-	- '''car_t mycar;'''
+    - ```typedef struct car {...} car_t;```
+	- ```car_t mycar;```
 
 #Singly-Linked Lists
   - Motivation
@@ -36,29 +36,29 @@
   - comprised of node
     - data of some data type
 	- a pointer to another node
-	- '''typedef struct sllist{
+	- ```typedef struct sllist{
 		Value val;
-		struct sllist* next;} sllnode;'''
+		struct sllist* next;} sllnode;```
 	- although inside curly brace there is a self-ref, but you cant use sllnode
 	- Operations
 	  - create a linked list 
-	    - '''sllnode* create(VALUE var);'''
+	    - ```sllnode* create(VALUE var);```
 		- you need it to return a pointer to that linked list 
-		  - '''sllnode* new = create(6)'''
+		  - ```sllnode* new = create(6)```
 		  - dynamimcally allocate space for a new sllnode
 		  - check to make sure mem
-		  - initialize the '''val''' field
-		  - initialize the '''next''' field with NULL
+		  - initialize the ```val``` field
+		  - initialize the ```next``` field with NULL
 		  - return a pointer 'new'  to this node 
 	  - search through a linked list to find an element
 	    - you will want to keep track of the head node 
-	    - '''bool find(sllnode* head, VALUE val);'''
+	    - ```bool find(sllnode* head, VALUE val);```
 		  - create a traversal ptr pt to list head
-		  - check if '''val''' is what we looking for
+		  - check if ```val``` is what we looking for
 		  - if not, set the travesal ptr to the next ptr in the list 
 		  - if reach the end, return fail
 	  - insert new node
-	    - '''sllnode* insert(sllnode* head, VALUE val);'''
+	    - ```sllnode* insert(sllnode* head, VALUE val);```
 		- malloc for a new sllnode
 		- check got mem
 		- populate and insert the node at the begining of the linked list 
