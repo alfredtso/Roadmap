@@ -44,6 +44,7 @@ Value val;
 struct sllist* next;
 } sllnode;
 ```
+       - Cont 
 	- although inside curly brace there is a self-ref, but you cant use sllnode
 	- Operations
 	  - create a linked list 
