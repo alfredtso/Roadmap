@@ -62,20 +62,20 @@ initialize the ```next``` field with NULL
 return a pointer 'new'  to this node 
 
 ### search through a linked list to find an element
-you will want to keep track of the head node 
+- you will want to keep track of the head node 
 ```bool find(sllnode* head, VALUE val);```
-create a traversal ptr pt to list head
-check if ```val``` is what we looking for
-if not, set the travesal ptr to the next ptr in the list 
-if reach the end, return fail
+- create a traversal ptr pt to list head
+- check if ```val``` is what we looking for
+- if not, set the travesal ptr to the next ptr in the list 
+- if reach the end, return fail
 
 ### insert new node
 ```sllnode* insert(sllnode* head, VALUE val);```
-malloc for a new sllnode
-check got mem
-populate and insert the node at the begining of the linked list 
-can do it instantly, constant time complex
-return a ptr to the new head of the linked list
+- malloc for a new sllnode
+- check got mem
+- populate and insert the node at the begining of the linked list 
+- can do it instantly, constant time complex
+- return a ptr to the new head of the linked list
 
 ### del a single element
 ### del an entire linked list 
