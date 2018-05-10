@@ -96,7 +96,7 @@ return a pointer 'new'  to this node
 - return non neg int val called hash code
 - an array to store the data of type into the data struct
 
-``` 
+```C 
 int x = hash('John'')
 hashtable[x] = 'John'
 ```
@@ -117,4 +117,98 @@ unsigned int hash(char* str)
 	return sum % HASH_MAX;
 }
 ```
+- usually use source hashfunction
 
+## Chaining
+- An array of pointer pointing to different singly linked list
+
+# Tries
+Arrays and Hashtable are key-value data structure
+- The data to be searched for is now a roadmap
+- no two data (unless they are identical) have the same path
+```C
+typedef struct _trie
+{
+	char university[20];
+	struct _trie* paths[10];
+}
+trie;
+```
+- University example
+- Constant time insertion, deletion, lookup
+
+# Stack
+- statically declared mem, name variables etc
+- function frame
+- LIFO structure
+- Operations
+  - Push: add
+  - Pop: remove
+```C
+typedef struct _stack
+{
+	VALUE array[CAP];
+	int top;
+}
+stack;
+```
+## Push
+- accept a pointer to the stack
+- accept data of type VALUE to be added to the stack.
+- add to the top of the stack
+- change the location of the top
+```void push(stack* s, VALUE data);```
+
+## Pop
+- Accept a ptr to the stack
+- Change the location of the top
+- Return the removed data to us
+```VALUE pop(stack* s);```
+
+## Linked-list implementation of Stacks
+``` 
+typedef struct _stack
+{
+	VALUE val;
+	struct _stack* stack;
+}
+stack;
+```
+- always maintains a ptr to the head of the list
+## Push 
+- malloc a new node, set its next ptr to the head of the list, then move the head ptr to new
+## Pop
+- move to the second element and free the head, and move the head ptr to second elem
+- move the trav pointer for the ptr to head to next element, remove the head
+- move the head of list ptr to same as trav ptr
+
+# Queues
+- FIFO structure
+- commonly implemented as array or linked list
+## Operations
+- Enqueue: Add new to the end
+- Dequeue: remove the oldest from the front
+```C
+typedef struct _queue
+{
+	VALUE array[CAPACITY];
+	int front;
+	int size;
+}
+queue;
+```
+The front so we know which to dequeue
+
+## Enqueue (push)
+- same as push
+- Except instead of add to top, this add to the end of the queue
+- Change the size of the queue, whereas push change the top
+``` void enqueue (*queue q, VALUE val); ```
+- We dont want to change the front, which is also the oldest
+- Instead we change the size 
+
+## Dequeue (pop)
+- Accept ptr ...
+- Change the location of the front
+- Decrese size
+- Return value ...
