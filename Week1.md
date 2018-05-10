@@ -36,7 +36,6 @@
   - comprised of node
     - data of some data type
 	- a pointer to another node
-	- Code
 ```
 typedef struct sllist
 {
@@ -76,7 +75,46 @@ return a pointer 'new'  to this node
 - populate and insert the node at the begining of the linked list 
 - can do it instantly, constant time complex
 - return a ptr to the new head of the linked list
+##### Order of manipulating ptr
+- Set the new node next pointer to the old head
+- Then we move the list head point to new node
 
 ### del a single element
-### del an entire linked list 
+- Can be messy since your need to go back one node and cant orphan the rest 
+### del an entire linked list
+```destroy(list);```
+- If reach null ptr, stop (base-case in recursion)
+- Del the rest of the list first.
+- Free the current node
+
+# Hashtable
+- Combines the accessibility of array and dynamism of a linked list
+  - Meaning if well-defined, insert del lookup in constant time
+- To do so, create struct that when we insert data, data itself tell us where to find
+  - tradeoff: not good at sorting or ordering
+## hash function
+- return non neg int val called hash code
+- an array to store the data of type into the data struct
+
+``` 
+int x = hash('John'')
+hashtable[x] = 'John'
+```
+## What makes a good hashfunction ?
+- Use only the data being hashed
+- Use all the data ...
+- Deterministic, not heuristic
+- Uniformly distribute data
+- Generate very different hash code for similar data
+```C
+unsigned int hash(char* str)
+{
+	int sum = 0;
+	for (int j =0; str[j] != '\0'; j++)
+	{
+		sum += str[j];
+	}
+	return sum % HASH_MAX;
+}
+```
 
