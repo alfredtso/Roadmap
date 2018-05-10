@@ -237,7 +237,7 @@ Make sure to always maintain not only head but also tail of the d-linked list
 # Summary
 
 Type | Insert, Deletion, Lookup | Sort | Memory | Downside
-____ | ________________________ | ____ | ______ | _________
+---- | ------------------------ | ---- | ------ | ---------
 Array | Bad, Bad, Great | Relatively Easy | Relatively small | no flexibility
 Linked List | Easy, easy, linear search | Difficult | not as small as array | 
 Hashtable | Insertion: 2 Step, Easy, Average | Use array instead | >linked < Tries |
