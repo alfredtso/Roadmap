@@ -29,7 +29,7 @@
     - ```typedef struct car {...} car_t;```
 	- ```car_t mycar;```
 
-#Singly-Linked Lists
+# Singly-Linked Lists
   - Motivation
     - Array has limited flexibility, e.g if we need larger array on the go
 	- we want to able to grow and shrink a collection of like values
