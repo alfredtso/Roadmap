@@ -212,3 +212,33 @@ The front so we know which to dequeue
 - Change the location of the front
 - Decrese size
 - Return value ...
+``` VALUE dequeue(queue* q); ```
+
+# Linked-list implementation of Queue
+```C
+typedef struct _queue
+{
+	VALUE val;
+	struct _queue* next;
+	struct _queue* prev;
+}
+queue;
+```
+
+## Enqueue
+Make sure to always maintain not only head but also tail of the d-linked list
+- malloc a new node; set the new next ptr to NULL, set its prev ptr to the tail
+- set the tail's next to new; move tail ptr to the new node 
+
+## Dequeue
+- Same as pop
+- Make new head prev ptr to Null
+
+# Summary
+
+Type | Insert, Deletion, Lookup | Sort | Memory | Downside
+____ | ________________________ | ____ | ______ | _________
+Array | Bad, Bad, Great | Relatively Easy | Relatively small | no flexibility
+Linked List | Easy, easy, linear search | Difficult | not as small as array | 
+Hashtable | Insertion: 2 Step, Easy, Average | Use array instead | >linked < Tries |
+Tries | Ins: Complex, but its cont time. Easy, Fast | Sort as u build | Huge |
