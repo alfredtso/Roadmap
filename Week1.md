@@ -36,13 +36,14 @@
   - comprised of node
     - data of some data type
 	- a pointer to another node
-	- ```
-	typedef struct sllist
-	{
-	Value val;	
-	struct sllist* next;
-	} sllnode;
-	```
+	- Code
+```
+typedef struct sllist
+{
+Value val;	
+struct sllist* next;
+} sllnode;
+```
 	- although inside curly brace there is a self-ref, but you cant use sllnode
 	- Operations
 	  - create a linked list 
