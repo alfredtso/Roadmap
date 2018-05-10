@@ -1,5 +1,5 @@
-#10/5/2018
-##CS50
+# 10/5/2018
+## CS50
 - type struct example (node)
   - number
   - a pointer to the next node
@@ -8,7 +8,7 @@
   - instead of int, and incrementing ++
 - stack: Last In First Out
   - queue: First In First Out
-#Binary serach tree
+# Binary serach tree
   - each node has two pointers
   - left point to another node(childer) which is smaller
   - right point to bigger
@@ -20,7 +20,7 @@
 
 # Structure
   - variable declaration
-    - '''struct car \*mycar = malloc(sizeof(car));'''
+    - ```struct car \*mycar = malloc(sizeof(car));```
     - '''(\*mycat).year = 2010'''
 	- same as '''mycar->year = 2011;'''
 # Custom Data Types
