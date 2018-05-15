@@ -242,3 +242,119 @@ Array | Bad, Bad, Great | Relatively Easy | Relatively small | no flexibility
 Linked List | Easy, easy, linear search | Difficult | not as small as array | 
 Hashtable | Insertion: 2 Step, Easy, Average | Use array instead | >linked < Tries |
 Tries | Ins: Complex, but its cont time. Easy, Fast | Sort as u build | Huge |
+
+# 15/5/2018
+
+## CS50 Pset5
+### Speller
+- dictionar.(c,h}
+In dictionary.h, four fx declared, check what they do. In dictionary.c, reimplement fx.
+so that it works fast.
+
+- Makefile
+A config file specify how to compile. might need to modify if want to include more file
+should be to SRCS for .c files and HDRS for .h files
+
+- speller.c
+understand the code. ```getrusage``` will be benchmarking ``check load size unload```
+You might want to provide speller with your own dictionary, since the one you implement
+```load``` in dictionary.c might be dictionary/large
+
+#### Specification
+- Not alter ```speller.c```
+- can alter dictionary.c, but no the declaratn of load check size unload
+- can alter dictionary.h
+- can alter makefile
+- can add function to dictionary.c
+- check must be case-insensitive and return boolean. e.g foo's is false even foo is true
+- can assumre check only pass alphabet and apostrophes
+- any dictionary passed to your program will be structured exactly like ours, lexicographically sorted from top to bottom with one word per line, each of which ends with \n.
+- must not leak memory. Valgrind
+#### Check
+- if the word exits, can be found in hashtable
+- which bucket will be in
+- search the linked list 
+```C
+node *cursor = head;
+whiel (cursor != NULL){
+	// do sth
+	cursor = cursor->next;
+}
+```
+- traverse a trie
+  - for each letter in input word
+  - go to corres. element in children
+    - if NULL, mispelled
+	- if !NULL, move to next letter
+  -once at the end, check if is_word is true
+
+#### load
+##### hashtable
+- an array of buckets
+- each bucket is a linked list
+- Example
+  - hashtable: 2 bucket, if (n%2 == 1), odd b, else even b. hashfunction
+linked list implementation
+```C
+typedef struct node{
+	// values the node holds, extra byte for pointer
+	char word[LENGTH+1];
+	// pointer to the next node
+	struct node *next;
+}
+
+node *node1 = malloc(sizeof(node));
+node *node2 = malloc(sizeof(node));
+// since node 1 is a pointer, use -> to access
+strcpy(node1->word , "Hello");
+strcpy(node2->word , "World");
+
+// point the next in node1 to node2
+node1->next = node2;
+
+// hashtable would be an array of node pointer
+node *hashtable[50];
+```
+##### make a new word
+- scan dict word by word
+``` while (fscanf(file, "%s", word) != EOF)){...}```
+- insdie the loop
+  - malloc node
+```C
+node *new_node = malloc(sizeof(node));
+if (new_node = NULL){
+	unload();
+	return false;
+}
+// if ok 
+strcpy(new_node->word, word);
+```
+Inset into a linked list
+```C
+// point the new next to the node head pointing to
+new_node->next = head;
+head = new_node;
+```
+
+##### Hash Function
+- take a string
+- return an index less that the no. of buckets
+- deterministic, i.e same item same index
+- hash new_node->word
+- insert into the linked list 
+
+### tries
+- every node contains an array of node ptr
+  - one for every letter and '\''
+```C
+typedef	struct node{
+	bool is_word;
+	struct node *children[27];
+}
+node;
+node *root;
+```
+
+### Unload
+- linked list from head 
+- tries from bottom, free all children, can try recursion too
