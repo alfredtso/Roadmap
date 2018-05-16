@@ -363,7 +363,8 @@ node *root;
 # 6001x
 ## Pylab
 - import pylab as plt
-- ``` plt.plot(mySamples, myLinear)```
+``` plt.plot(mySamples, myLinear)```
+
 ```Python
 plt.figure('linear')
 plt.plot(X, Y)
@@ -439,6 +440,8 @@ This will allow you to plot on diff graph and can recall using the name
 (define (best? cn) 
   (if (string? cn "Hong Kong")
       true
-	  flase))
+	  false))
 
 ```
+### Interval
+
