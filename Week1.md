@@ -358,3 +358,87 @@ node *root;
 ### Unload
 - linked list from head 
 - tries from bottom, free all children, can try recursion too
+
+## 16/5/2018
+# 6001x
+## Pylab
+- import pylab as plt
+- ``` plt.plot(mySamples, myLinear)```
+```Python
+plt.figure('linear')
+plt.plot(X, Y)
+plt.figure('Quad')
+plt.plot(X, YSq)
+plt.ylim(0,100)
+plt.clf() #ipython seems to auto clf for you, maybe its because in diff cell, not sure
+plt.plot(X, Y, label = 'linear')
+plt.legend(loc='upper left')
+plt.show()
+```
+This will allow you to plot on diff graph and can recall using the name
+- plt.xlables, plt.title
+
+### Visualizing
+- A way to think about different kinds of result
+  - Linear Vs Quadratic Vs Exponential as shown in lecture
+  - Can use same scale to show diff
+  - Or overlaying them over same plt.figure
+
+#### Changing Display
+- Line style
+```plt.plot(X, Y, 'b-', label = 'linear')```
+'b' stands for blue and '-' stands for dash
+- Line Width
+```plt.plot(X, Y, 'b-', label = 'linear', linewidth = 0.5)```
+- Subplots
+```plt.subplot(211) # meaning 2 rows 1 colums in pos 1```
+- Changing Scales
+``` plt.yscale('log')```
+
+# HtDP
+## Cond
+- ```Cond``` is kind of like switch in C, multiplt cases
+```
+(define (function c)
+  (cond [Q A]
+        [Q A]))
+```
+## HtDD
+- We might want to design data definition so that we can represent things in "Problem Domain" in "Program"
+- For example, "the light is red" could be represented by 0 in the Program and in turn we can interpret the light using 0, 1, 2 in the program
+#### Inherent Structure of the Information
+
+- Atomic: cannot be taken apart into pieces that are meaningfully part of the same p. domain
+```
+;; CityName is String
+;; interp. the name of a city //since its atomic, usually simple
+(define CN1 "Boston")
+(define CN2 "Hong Kong") 
+
+(define (fn-for-city-name cn) 
+  (... cn)) 
+
+;;Template rules used:
+;; - atomic non-distinct: String
+;;
+;;
+
+;; Functions:
+
+//Signature
+;; CityName -> Boolean
+//Purpose
+;;produce true if the given city is the best in the world
+(check-expect (best? "Boston") false)
+(check-expect (best? "Hong Kong") true)
+
+(define (best? cn) false) ;stub
+
+; took template from CityName
+
+(define (best? cn) 
+  (if (string? cn "Hong Kong")
+      true
+	  flase))
+
+```
