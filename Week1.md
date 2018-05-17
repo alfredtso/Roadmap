@@ -457,6 +457,23 @@ This will allow you to plot on diff graph and can recall using the name
 
 ;; Template rules used:
 ;; - atomic non-distinct: Integer[1,32]
+
+;; Functions;
+
+;; SeatNum -> Boolean
+;; produce true if the given seat number is on the aisle
+
+(check-expect (aisle? 1) true)
+(check-expect (aisle? 12) false)
+(check-expect (aisle? 32) true)
+
+; (define (aisle? sn) false) ;stub
+
+; Use template from SeatNum
+
+(define (aisle? sn)
+  (or (= sn 1)
+      (= sn 32)))
 ```
 
 ### Enumeration
@@ -481,8 +498,25 @@ This will allow you to plot on diff graph and can recall using the name
 ;; - atomic distinct value: "A"
 ;; - atomic distinct value: "B"
 ;; - atomic distinct value: "C"
-```
 
+;; Functions:
+
+;; LetterGrade -> LetterGrade
+;; produce next highest letter grade (no change for A)
+(check-expect (bump-up "A") "A")
+(check-expect (bump-up "B") "A")
+(check-expect (bump-up "C") "B")
+
+; (define (bump-up lg) "A")
+
+; Use template from LetterGrade
+(define (bump-up lg)
+  (cond [(string=? lg "A") ("A")]
+        [(string=? lg "B") ("A")]
+		[(string=? lg "C") ("B")]
+
+```
+- Fault injection
 ### Itermization
 - with a *one of* but not all of the subclasses are single distinct value
 - at least one class not single distinct value
@@ -514,4 +548,25 @@ This will allow you to plot on diff graph and can recall using the name
 ;;  - atomic distinct: false
 ;;  - atomic non-distinct: Natural[1,10]
 ;;  - atomic distinct: "complete"
+
+;; Functions;
+
+;; CountDown -> Image
+;; produce image of current stage of CountDown
+(check-expect (countdown-to-image false) (square "0" "solid" "white") )
+(check-expect (countdown-to-image 5) (text (number->string 5) 24))
+(check-expect (countdown-to-image "complete") (text "Happy New Year!!" 24 "red" ))
+
+; (define (countdown-to-image c) (square 0 "solid" "white"))
+
+; use template from CountDown
+
+(define (countdown-to-image c)
+  (cond [(false? c) 
+         (square "0" "solid" "white")]
+        [(and (number? cd) (<= 1 c) (<= c 10))  
+		 (text (number->string 5) 24 "black")]
+		[else 
+		 (text "Happy New Year!!" 24 "red" )])
+
 ```
