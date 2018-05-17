@@ -1,5 +1,6 @@
 # 10/5/2018
-[Go To](#hash-function)
+[HtDP](#HtDP)
+[6001x](#6001x)
 ## CS50
 - type struct example (node)
   - number
