@@ -444,4 +444,74 @@ This will allow you to plot on diff graph and can recall using the name
 
 ```
 ### Interval
+- Represent a theater seat number with 32 seats each row
+```
+;; Seatnum is Integer[1, 32]
+;; interp. the seat number in a row, 1 and 32 are aisle seats
+(define SN1 1) ;aisle
+(define SN2 12) ;random middle
+(define SN3 32) ;aisle
 
+(define (fn-for-sn sn)
+  (... sn))
+
+;; Template rules used:
+;; - atomic non-distinct: Integer[1,32]
+```
+
+### Enumeration
+- use enumeration when domain info. consist pf 2 or more distinct values 
+- "one of", more than 2
+```
+
+;; LetterGrade is one of:
+;;   - "A"
+;;   - "B"
+;;   - "C"
+;; interp. the letter grade in a course
+;; example are trivial for enumerations
+
+(define (fn-for-letter-grade lg)
+  (cond [(string=? lg "A") (...)]
+        [(string=? lg "B") (...)]
+		[(string=? lg "C") (...)]
+
+;; Template rule used:
+'' - one of: 3 cases 
+;; - atomic distinct value: "A"
+;; - atomic distinct value: "B"
+;; - atomic distinct value: "C"
+```
+
+### Itermization
+- with a *one of* but not all of the subclasses are single distinct value
+- at least one class not single distinct value
+```
+
+;; CountDown is one of:
+;; - false
+;; - Natural[1,10]
+;; - "complete"
+;; interp.
+;;     falese means countdown not yet started
+;;     Natural[1,10 means countdown is running and hw many sec before midnight
+;;     "complete" means countdown is over
+
+(define CD1 false)
+(define CD2 5)
+(define CD3 "complete")
+
+
+(define (fn-for-countdown cd)
+  (cond [(false? cd) (...)]
+        [(and (number? cd) (<= 1 c) (<= c 10))  (... cd)]
+		[else (... )])
+
+
+
+;; Template rule used:
+;;  - one of: 3 cases
+;;  - atomic distinct: false
+;;  - atomic non-distinct: Natural[1,10]
+;;  - atomic distinct: "complete"
+```
