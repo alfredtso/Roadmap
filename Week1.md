@@ -1,4 +1,5 @@
 # 10/5/2018
+[Go To](#hash-function)
 ## CS50
 - type struct example (node)
   - number
@@ -570,3 +571,4 @@ This will allow you to plot on diff graph and can recall using the name
 		 (text "Happy New Year!!" 24 "red" )])
 
 ```
+
