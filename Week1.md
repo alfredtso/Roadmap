@@ -572,4 +572,81 @@ This will allow you to plot on diff graph and can recall using the name
 		 (text "Happy New Year!!" 24 "red" )])
 
 ```
+# 19/5/2018
+
+## ProgramLangA
+```sml
+
+val x = 34;
+
+val y = 17;
+```
+SML is a static environment meaning it type check
+- All values are expressions but not vice versa
+  - Every val "eval to itself in 'zero steps'
+
+``` if e1 then e2 else e3 ```
+- e2 and e3 can have any type, but must have same type t so is the entire exp.
+
+#### Exercise
+``` less-than ```
+##### Syntax
+``` e1 < e2 ```
+##### Type-checking
+- return type bool, e1 and e2 can be int in the same static env. 
+##### Evaluation rules
+- eval e1 to v1 and e2 to v2 in the same dynamic env, and produce true or false 
+
+### Shadowing
+- multiple variable bindings is often poor style 
+```sml
+val a = 10
+val b = a * 2
+val a = 5
+val c = b
+val d = a
+val a = a + 1
+```
+There is no way to "assign to" a variable in ML (Python too, 10 is objecta and a is just a "pointer" to the object 
+
+### Function
+```sml
+fun pow(x : int, y: int) = 
+	if y=0
+	then 1
+	else x * pow(x,y-1)
+
+fun cube(x : int) =
+	pow(x, 3)
+
+val sixtyfour = cube(4)
+```
+- Syntax
+``` fun x0 (x1 : t1, ... , xn : tn) = e ```
+- Evaluation
+  - function is already a value !
+  - Add x0 to env so later exp can call it
+  - Func calls semantics also allow recursion
+- Type-checking
+  - Add binding x0 -> t if type-check body e in statis env containing:
+    - "Enclosing" statis env
+	- x1 : t1, ... , xn : tn
+	- x0 : (t1 * ... * tn) -> t
+
+### Pairs
+- Syntax: (e1, e2)
+- Evaluation: eval e1 to v1 and e2 to v2; result is (v1,v2)
+- Type-checking: if e1 has type ta and e2 has type tb, then the exp has ta * tb
+- Access:
+  - SyntaxL: ```#1 e``` to access the first elem or e
+  - Eval: eval to a pair of values, and return piece
+  - Type-checking: If e has type ta*tb, then #1 e has type ta ... etc
+
+### List
+- Syntax: []
+- Eval: "concat": 5::x; == add 5 into list x 
+- Access:
+  - Syntax: null e : checking if e is empty
+  - if e eval to [v1,v2,...,vn], ```hd e``` eval to v1
+  - ```tl e``` eval to [v2, ... , vn]
 
