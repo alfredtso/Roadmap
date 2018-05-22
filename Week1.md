@@ -1,7 +1,7 @@
 # 10/5/2018
-- [HtDP](#HtDP)
+- [HtDP](#htdp)
 - [6001x](#6001x)
-- [ProgramLangA](#ProgramLangA)
+- [ProgramLangA](#programlanga)
 ## CS50
 - type struct example (node)
   - number
