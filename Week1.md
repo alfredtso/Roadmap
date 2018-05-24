@@ -651,3 +651,207 @@ val sixtyfour = cube(4)
   - if e eval to [v1,v2,...,vn], ```hd e``` eval to v1
   - ```tl e``` eval to [v2, ... , vn]
 
+- t list is a list with all elements have type t
+  - int list , bool list ... etc
+- [] can have type t list for any t
+  - SML use 'a list to denote such list
+- For e1::e2 to type-checking, a t such that e1 has type t and e2 t list
+  - ```null``` : 'a list -> bool
+  - ```hd```: 'a list -> 'a
+  - ```tl```: 'a list -> 'a list 
+
+## List Functions
+- Recursive example
+```sml
+fun sum_list (xs : int list) =
+	if null xs
+	then 0
+	else hd xs + sum_list(tl xs)
+
+fun countdown (x : int) = (* [7,6,5,4,3,2,1] *)
+	if x = 0
+	then []
+	else x :: countdown(x-1)
+
+fun append(xs : int list, ys : int list) =
+	if null xs
+	then ys
+	else (hd xs) :: append((tl xs), ys)
+
+(* (int list) * (int list ) -> in list *)
+
+fun sum_pair_list (xs : (int * int) list) = 
+	if null xs
+	then 0
+	else #1 (hd xs) + #2 (hd xs) + sum_pair_list(tl xs)
+
+fun firsts (xs : (int * int) list) =
+	if null xs
+	then []
+	else (#1 (hd xs)) :: firsts(tl xs)
+
+fun seconds (xs : (int * int) list) =
+	if null xs
+	then []
+	else (#2 (hd xs)) :: seconds(tl xs)
+
+fun sum_pair_list2 (xs : (int * int) list) = 
+	(sum_list(firsts xs)) + (sum_list(seconds xs))
+
+```
+- Function over lists are usu recursive
+  - only way to get all the elements
+- Whats the ans for empty list (base case)
+- Whats the ans for non-empty
+  - usu in terms of answer of tail of the list
+- function produce list of potential any size will be recurs.
+  - create list out of smaller lists 
+
+### Let-expressions
+Syntax
+- ```let b1 b2 ... bn in e end ```
+  - each bi is any binding and e is expression
+Type-checking
+- type-check each bi and e in a static environment that includ prev bindings
+- type of the whole expression is the type of e
+Eval
+- eval each bi and e in a dynamic environment include prev binding
+- result of the whole expression is the result of eval e
+```sml
+fun silly1 (z: int) =
+	let
+		val x = if z > 0 then z else 34
+		val y = x + z + 9
+	in
+		if x > y then x * 2 else y * y
+	end
+
+fun silly2 () =
+	let
+		val x = 1
+	in
+		(let val x = 2 in x+1 end) + (let val y = x+2 in y+1 end)
+	end
+```
+#### Scope
+- where a binding is in the environment
+  - in later bindings and the body of the let-expression
+    - unless a later or nested bindings shadows it
+  - Only in later bindings and body of the let-expression
+
+#### Nested Function
+```sml
+fun countup_from1_better (x : int) = 
+	let fun count (from : int) = 
+			if from = x
+			then x :: []
+			else from :: count(from+1)
+	in
+		count 1
+	end
+```
+Good style to define helper inside function they help if
+- unlikely to be useful elsewhere
+- likely to be misused elsewhere
+- likely to be changed
+Trade-off in code design: reusing code saves effort but makes reused code harder to change later
+
+#### Let to avoid repeared computation
+Bad code example
+- bad as in each time recursive call twice -> exponential times many
+```sml
+fun bad_max(xs : int list) = 
+	if null xs
+	then 0
+	else if null (tl xs)
+	then hd xs
+	else if hd xs > bad_max(tl xs)
+	then hd xs
+	else bad_max(tl xs)
+
+fun good_max (xs : int list) =
+    if null xs
+    then 0
+    else if null (tl xs)
+    then hd xs
+    else
+	(* for style, could also use a let-binding for (hd xs) *)
+	let val tl_ans = good_max(tl xs)
+	in
+	    if hd xs > tl_ans
+	    then hd xs
+	    else tl_ans
+	end
+
+fun countup(from : int, to : int) =
+    if from=to
+    then to::[]
+    else from :: countup(from+1,to)
+
+fun countdown(from : int, to : int) =
+    if from=to
+    then to::[]
+    else from :: countdown(from-1,to)
+
+```
+#### Option
+Motivation
+- return 0 for empty list
+  - raise an exception
+- ```t option``` is a type for any type t
+- Building:
+  - NONE has 'a option
+  - SOME e has type t option if e has type t
+- Accessing:
+  - isSome has type a option ->bool
+  - valOf has type a option -> a (exception if given NONE)
+```sml
+(* better: returns an int option *)
+fun max1 (xs : int list) =
+    if null xs
+    then NONE
+    else 
+	let val tl_ans = max1(tl xs)
+	in if isSome tl_ans andalso valOf tl_ans > hd xs
+	   then tl_ans
+	   else SOME (hd xs)
+	end
+
+(* looks the same as max1 to clients; 
+   implementation avoids valOf *)
+fun max2 (xs : int list) =
+    if null xs
+    then NONE
+    else let (* fine to assume argument nonempty because it is local *)
+			fun max_nonempty (xs : int list) =
+				if null (tl xs) (* xs better not be [] *)
+				then hd xs
+				else let val tl_ans = max_nonempty(tl xs)
+					 in
+						if hd xs > tl_ans
+						then hd xs
+						else tl_ans
+					end
+	in
+	    SOME (max_nonempty xs)
+	end
+```
+#### Booleans and Comparison
+```sml
+e1 andalso e2
+e1 orelse e2
+```
+- e1 andalso e2 = if e1 then e2 else false
+- e1 orelse e2 = if e1 then true else e2
+- not e1 = if e1 then false else true
+- e = if e then true else false
+
+#### Benefit of Immutable Data
+- read notes
+- aliases will affect all the aliases if changed made to the object
+- 5 things
+  - Syntax: How to write constructs?
+  - Semantics: What do porgram means ? Evaluation rules
+  - Idoims: typical pattern for using lang feat. to express computation
+  - Libraries
+  - Tools: not actually part of lang, its something part implementation enable you
