@@ -97,3 +97,56 @@ Px meaning P being sorted by x-coordinate
 - (p2,q2)=CP(Rx,Ry)
 - The above two case doesnt cover all cases i.e the split case
 - (p3,q3)=CSP(Px,Py)
+
+# From Nand to Tertis
+## Boolean Logic
+Functions
+- Can write down all possible value, unlike traditional function
+- Communtative
+- Associative
+- Distributive
+  - Eg. (x and (y or z))=(x and y) or (x and z)
+- De Morgan
+  - not (x or y) = not(x) and not (y)
+  - x OR y = NOT(NOT(X) AND NOT(y))
+- Need to turn truthtable to Boolean Expression
+  - Disjuntive normal form formula
+- Any Boolean function can be represented using containing AND, OR nad NOT operatn
+- only AND and NOT ok coz OR can be replaced 
+- can use only NAND
+  - NOT(x) = (x NAND x)
+  - (x AND y) = NOT(x NAND y) = ((x NAND y) NAND (x NAND y))
+### NAND
+- (x NAND y) = NOT(x AND y)
+## Logic Gate
+- Elementary ( Nand, And, Or)
+- Composit (Mux, Adder)
+Nand
+- functional spec: if (a=1) and (b=1) then 0 else 1
+- Gate interface, Gate implementation
+  - Interface describe what the chip is doing, implementation specifies how to do
+  - User interested in interface, builder interested in implementation
+  - Interface: One obstruction, Implementation can be many
+- Circuit implementation
+  - AND is like sereis
+  - OR is like paraelle connecrtion to a light bulb
+  - This course does not deal with physical implementations
+## HDL
+- Have hdl, tst, cmp for writing testing and comparing output
+- Example
+  - System Architects
+    - For each chip, a chip API ( name of the chip, input output)
+	- A test script, .tst
+	- A compare file, .cmp
+## Different chips
+- Mux
+  - Multiplexor
+    - enable selecting and outputting one out of two possible inputs
+    - if (sel == 0) then a else b
+  - Example: using mux logic to build a programmable gate
+    - AndMuxOr
+	- ``` if (sel==0) out=(a And b) else out=(a Or b)``` 
+- DMux
+  - Demultiplexor
+    - inverse of Mux, distribute the single input value into one of two destination
+    - if (sel==0) {a,b}={in,0} else {a,b}={0,in}
