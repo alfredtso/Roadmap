@@ -1,5 +1,6 @@
 # Week2
 - [Algorithms](#algorithms)
+- [FromNandtoTertis](#from-nand-to-tertis)
 # Algorithms
 - Integer Multiplication
   - Can have different way to do other than third grade way
