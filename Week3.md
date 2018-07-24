@@ -1,5 +1,6 @@
 # Week3
 - [CS50](#cs50)
+- [RelationalAlgebra](#relationalalgebra)
 - [ProgramLangA](#programlanga)
 # CS50
 - HTTP is a protocol
@@ -79,3 +80,53 @@ To get at the pieces:
 
 ### Pattern-Matching for Each-Of Types
 - We have used pattern-matching for one-of types, can use it for each-of types 
+
+# Relational Algebra
+- Simplest query: relation name(table)
+- Use operators to filter, slice, combine
+  - Core: Relation, Select, Project, Cross Product, Union, Diff, Rename
+  - Abbreviation: can be reproduced using core
+    - Natural join, theta join, Intersection
+``` 
+\project_{pizza} ((\select_{gender = 'female' and age > 20} person) \join eats);
+\project_{name}((\select_{pizzeria='Straw Hat'} serves) \join (\select_{gender='female'} (person \join eats)));
+\project_{pizzeria}(\select_{price<10} serves \join \select_{name='Amy' or name='Fay'} eats);
+\project_{pizzeria}(\select_{price<10} serves \join \select_{(n1='Amy' and n2='Fay') or (n1='Fay' and n2='Amy')}(\rename_{n1, pizza} eats \join \rename_{n2, pizza} eats));
+\project_{name}(\select_{pizzeria='Dominos'} serves \join eats)
+\diff
+\project_{name}(\select_{pizzeria = 'Dominos'} frequents); 
+
+(\project_{pizza} serves \diff \project_{pizza}(\select_{price > 10} serves))
+\union 
+(\project_{pizza} eats \diff \project_{pizza}(\select_{age >= 24}(eats \join person)));
+
+(\project_{name, age}(\select_{pizza = 'mushroom'}Eats) \join Person))
+\project_{age}(\select_{pizza = 'mushroom'} eats \join person)
+\diff
+\project_{age}
+(\select_{a2 > age}
+((\rename_{a2}
+\project_{age}(\select_{pizza = 'mushroom'} eats \join person))
+\join
+\project_{age}(\select_{pizza = 'mushroom'} eats \join person)))
+
+\project_{pizzeria} serves
+\diff
+\project_{pizzeria}(
+serves
+\join
+((\project_{pizza} serves)
+\diff
+\project_{pizza}(
+(\select_{age > 30} person) \join eats)))
+
+(\project_{pizzeria}Serves) 
+\diff 
+    (\project_{pizzeria}((\project_{pizzeria}Serves) 
+        \cross 
+        (\project_{pizza}(\select_{age>'30'}Person \join Eats)) 
+    \diff 
+    (\project_{pizzeria,pizza}
+    ((\select_{age>'30'}Person \join Eats) \join Serves))))
+```
+
