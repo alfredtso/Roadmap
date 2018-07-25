@@ -647,5 +647,6 @@ empty ;; empty list
 ;; produce total numbers of weight in consumed list 
 ;; ListOfNumber -> Natural
 ```
-![Image of Lecture]
-(https://i.imgur.com/oTJtCQB.png)
+<p align="center">
+	<img src="https://i.imgur.com/oTJtCQB.png">
+</p>
