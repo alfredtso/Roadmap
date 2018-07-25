@@ -1,5 +1,6 @@
 # Week4
 - [ProgramLangA](#programlanga)
+- [HtC1x](#HtC1x)
 
 # ProgramLangA
 ## Functional programming
@@ -530,3 +531,121 @@ val _ = printIfPressed 11
 val _ = printIfPressed 23
 val _ = printIfPressed 4
 ```
+
+#HtC1x
+
+## Arbitrary Sized Data
+- Before we worked with fixed-size data
+- List Mechanisms
+  - cons a two argument constructor
+  - first access first element
+  - rest access the rest
+  - only use these 2 can recursively get all the elements
+```rkt
+empty ;; empty list
+
+(define L1(cons "Flames" empty))				 ;a list of 1 element
+(cons "Leafs" (cons "Flames" empty))			 ;a list of 2 elements
+(cons (string-append "C" "anucks") empty )
+
+(cons 10 (cons 9 (cons 10 empty)))			     'a list of 3 elements
+
+(first L1) ; prodce "Flames"
+
+(rest L1) 
+
+(first (rest L2)) ;get second
+(first (rest (rest  L2))) ;get third
+
+(empty? empty)	;check if list is empty
+```
+
+#### List Data Definition
+```rkt
+;Information:
+ UBC "UBC"
+ McGill "McGill"
+ Team Who Must Not Be Named "Team Who Must Not Be Named"
+
+(cons "UBS" (cons "McGill" empty))
+
+;; ListOfString is one of:
+;;  - empty
+;;  - (cons String ListOfString)
+;; interp. a list of strings 
+(define LOS1 empty)
+(define LOS2 (cons "McGill" empty))
+(define LOS3 (cons "UBC (cons "McGill" empty)))
+
+(define (fn-for-los los)
+	(cond [(empty? los) (...)]
+		  [else
+		   (... (first los)
+				(fn-for-los (rest los)))]))
+
+;; Template rules used:
+;;  - one of: 2 cases
+;;  - atomic distinct: empty
+;;  - compound: (cons String ListOfString)
+;;  - self-ref : rest los is ListOfString
+```
+#### Functions operate on lists
+```rkt
+
+;;; ListOfString -> Boolean
+;; produce true if los include UBC
+(check-expect (constains-ubc? empty) false)
+(check-expect (constains-ubc? (cons "McGill empty) false))
+(check-expect (constains-ubc? (cons "UBC empty) false))
+(check-expect (constains-ubc? (cons "McGill (cons "UBC" empty) true)))
+	
+;(define (constains-ubc? los)) false) ;stub
+
+(define (constains-ubc? los)
+	(cond [(empty? los) false]
+		  [else
+		   (if (string=?  (first los) "UBC")
+			   true
+			   (contains-ubc? (rest los)))]))
+
+;; Data definitions:
+
+;; ListOfNumber is one of:
+;;  - empty
+;;  - (cons Number ListOfNumber)
+;; interp. each number in the list is an owl weight in ounces
+(define LON1 empty)
+(define LON2 (cons 60 (cons 42 empty)))
+
+(define (fn-for-lon lon)
+ (cond [(empty? lon) (...)]
+	   [else
+	    (... (first lon)
+			 (fn-for-lon (rest lon)))]))
+
+;; Template rules used:
+;;  - one of: 2 cases
+;;  - atomic distinct: empty
+;;  - compound:(cons Number ListOfNumber)
+;;  - self-ref: (rest lon) is ListOfNumber
+
+;; Functions
+;; ListOfNumber -> Number
+;; produce total weight of Owl in consumed list
+(check-expect (sum empty) 0)
+(check-expect (sum (cons 60 empty) (+ 60 0)))
+(check-expect (sum (cons 60 (cons 42 empty))) (+ 60 (+ 42 0)))
+
+(define (sum lon) 0) ;stub
+
+(define (sum lon)
+ (cond [(empty? lon) (0)]
+	   [else
+	    (+ (first lon)
+			(sum (rest lon)))]))
+
+;; produce total numbers of weight in consumed list 
+;; ListOfNumber -> Natural
+```
+![Image of Lecture]
+(https://i.imgur.com/oTJtCQB.png)
