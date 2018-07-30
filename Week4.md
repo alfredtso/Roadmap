@@ -203,7 +203,7 @@ fun f g =
     end
 val x = 4
 fun h y = x + y (* add 4 to its argument *)
-val z = f h (* 7 *)
+val z = f h (* 6 *)
 ```
 ### Motivation: Lexical Scope
 Lexical scope: use env where func is defined
@@ -649,4 +649,101 @@ empty ;; empty list
 ```
 <p align="center">
 	<img src="https://i.imgur.com/oTJtCQB.png">
+</p>
+
+### Reference
+
+<p align="center">
+	<img src="https://i.imgur.com/DPctFTB.png">
+</p>
+
+- Reference produce natural helper
+  - if you need to do complicated stuff (calling more than one function), do it elsewhere
+- Reference rule need to be used **EACH** time it is referenced
+
+# Networking
+### 4 layers
+1. Application
+2. Transport
+3. Network: IP Service Model, hop-by-hop routing, packets encapsulation
+4. Link
+
+### Transport
+Can be UDP or TCP or ICMP
+#### TCP
+- Application hands some byte to TCP, TCP place these to TCP segment
+- TCP hands the segment to the IP layer which encapsulate it in an IP datagram
+- then hand to link frame, say WIFI addess
+- TCP use 3-way shake
+  - send SYN message from A to B, and the message also send along the base no.
+  - B respond with SYN + ACK
+  - A then respond with ACK
+  - send data as if its a cont stream of bytes
+- Closing TCP connection
+  - also called "teardown"
+  - A send FIN
+  - B to A: (Data +) ACK
+  - B: FIN when done sending data
+  - A: send back ACK
+<p align="center">
+	<img src="https://i.imgur.com/LA5b5q6.png">
+</p>
+
+- TCP Segment is more complicated since its reliable
+<p align="center">
+	<img src="https://i.imgur.com/EBXMdTZ.png">
+</p>
+- TCP has 104 bit globally unique ID with 5 pieces of info
+  1. Host A increments source port for every new connection
+
+#### UDP
+<p align="center">
+	<img src="https://i.imgur.com/lOCYudZ.png">
+</p>
+
+#### ICMP
+Intenet Control message protocol
+  - its a transport layer protocol
+1. IP create IP datagrams and use hop by hop delivery from end to end
+2. Routing Tables
+  - Algorithms to populate router forwarding tables
+3. ICMP
+  - Communicate network layer info between end hosts and routers
+  - Reports error conditions: self-contained message
+  - Help us diagnose problems: Simple datagram service no retries
+  
+
+<p align="center">
+	<img src="https://i.imgur.com/8DVSHvP.png">
+</p>
+
+<p align="center">
+	<img src="https://i.imgur.com/83tLyEO.png">
+</p>
+
+<p align="center">
+	<img src="https://i.imgur.com/kO0pLDB.png">
+</p>
+#### End-to-end principle
+- correctness can only be check at the ends
+- strong end-to-end means doing all the high level stuff at the ends
+
+#### Error detection
+3 schemes
+- Checksum, CRC, MAC
+Checksum
+- adds up values in packet
+  - very fast and cheap in software
+  - not robust
+CRC (Cyclic redundancy code)
+- more expensive than checksum
+- portect against any 2 bit error, any burst <= c bits long, any odd number of errors
+MAC Message authentication code
+- robust to malicious modifications, but not errors
+<p align="center">
+	<img src="https://i.imgur.com/aoHty8R.png">
+	<img src="https://i.imgur.com/bTx5pN5.png">
+	<img src="https://i.imgur.com/AOFj7iF.png">
+	<img src="https://i.imgur.com/W6vMtfV.png">
+	<img src="https://i.imgur.com/JvBbutn.png">
 </p>
