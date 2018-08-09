@@ -747,3 +747,19 @@ MAC Message authentication code
 	<img src="https://i.imgur.com/W6vMtfV.png">
 	<img src="https://i.imgur.com/JvBbutn.png">
 </p>
+
+#### Finite State Machines
+<p align="center">
+	<img src="https://i.imgur.com/21Cis9k.png">
+</p>
+#### Reliable Communications - Stop and wait
+- when A can send more packet than B can receive -> problem
+- At most one packet at a time
+- the receiver send back ack when receive
+- on receiving ack, sender send a new packet
+- on timeout, sender resend current data
+<p align="center">
+	<img src="https://i.imgur.com/2QpRiOD.png">
+</p>
+
+
