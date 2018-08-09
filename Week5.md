@@ -25,9 +25,11 @@
 - DTD: Document Type Descriptor
   - Grammar-like specifiying elements, attributes, nesting, ordering, #occurrences
   - also special attribute types ID and IDREFS (pointers)
+
 <p align="center">
-	<img src="https://i.imgur.com/oTJtCQB.png">
+	<img src="https://i.imgur.com/cBSI2kd.png">
 </p>
+
 ### XML Schema (XSD)
 - like DTDs, can specify elements ... also data types, keys, (typed) pointers, and more
 - XSD is written in XML
