@@ -141,7 +141,9 @@ dest = comp ; jump
 2. to see the contents of the keyboard chip
 3. in the hack computer: probe the contents of RAM[24576]
 4. if 0, no key is pressed
-### Hack Programming
+#127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myhostname.localdomain	myhostname## Hack Programming
 - Will need assembler to translate assembly program to binary code
 - CPU emulator can be used to debugging and executing 
 #### Working with registers and memory
