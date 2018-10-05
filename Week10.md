@@ -1,5 +1,6 @@
 # ProgramLang
 ### Static Checking
+- def: anything done to reject the prog after it parses but before it runs
 - Compile Time and Run Time checking are just 2 pts on the continum
 ### Correctness
 - type system is sound if it prevent X for some X 
