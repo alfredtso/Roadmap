@@ -13,6 +13,9 @@
 - if the subproblem rate > shrinking, total work is bounded by the number of leaves
 ![master](https://i.imgur.com/AcSWbuZ.png)
 ![master1](https://i.imgur.com/Ysvt6Nd.png)
+### Readings
+- Subproblem not always constrained to being a constant fraction of original size
+- e.g recursive version of linear search would create just one element less
 # Database
 ### SQL
 - Subqueries in WHERE clause
@@ -56,3 +59,22 @@
   - but we cannot allow argument subtyping, but allow backard subtype !
 	- function can assume "less than it needs to" about arguments 
     - its called contravariant
+- Classes Vs Types
+  - A class defines an objects behaviour
+  - subclassing inherits behaviour and cahnges it via extension and overriding
+  - A Type describe an object's method's arguement/result types
+  - A subtype is substitutable in terms of its fields/method types
+  - !!! optional stuff to catch up
+- Generic Vs Subtyping 
+- Generic
+  - parametric polymorphism 'a -> 'b
+  - generally: when types can "be anything" but multiple things need to be "the same type"
+- Subtyping
+  - Code that "need a foo" but fine to have "more than a Foo"
+  - Geometry on points in the example coloured point works well
+  - GUI widegets specialize the basic idea of "being on the screen" and "responding to user actions"
+### Benefits of No Mutation
+- Can freely alias or copy values
+- More function/modules are equivalent
+- No local copies
+- Depth subtyping is sound

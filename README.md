@@ -1,4 +1,4 @@
-# Road to
+# Road to Nerd
 
 ## Study Notes
 - [Week 1](https://github.com/alfredtso/Roadmap/blob/master/Week1.md)
@@ -16,3 +16,8 @@
 - [Week 13](https://github.com/alfredtso/Roadmap/blob/master/Week13.md)
 - [Week 14](https://github.com/alfredtso/Roadmap/blob/master/Week14.md)
 
+## TODO
+- [ ] ProgramLang Hw7
+- [ ] Nand2Tertis Hw
+- [ ] ProgramLang Hw7
+- [ ] ProgramLang Hw7
