@@ -72,3 +72,51 @@
 - Goal: compute a cut with fewest number of crossing edges
 - application: identify network bottlenecks
 - community detection in social networks
+### Sparse vs Dense Graphs
+- Let n = # of vertices, m = # of edges
+- In most case, m is best case n and worst case n square
+- sparse graph, m is O(n)
+- dense graph, m is close to O(n^2)
+- Adjacency Matrix
+    - Represent G by a nxn 0-1 matrix A where Aij = G has an i-j edge
+	- Variants
+		- Aij = # of edges
+		- Aij = weight of i-j edge
+		- Aij denote direction of edge
+- Adjacency List
+	- array of vertices
+	- array of edges
+	- each edge points to its endpoints
+	- each vertex points to edges incident on it (one hop out)
+### Random Contraction 
+- Solve minimum cut problem 
+- To compute the success probability
+- Key Observation: degree of each vertex is at least k (degress=# of incident edges)
+	- Reason: 
+
+
+### Python's f-string
+- format string with expressions, methods
+```python
+>>>name = "ALFRED"
+>>>f"My name is {name.lower()}."
+'My name is alfred.'
+```
+
+### Data Abstraction
+- Assignment statement is a type of data abs
+- Function also
+- Visibility
+    - Public and Private
+	- Constructor almost always public
+- Steps for Data Abstraction
+  - Specify
+	- Precondition for correctness
+	  - REQUIRES
+	- What does it change
+	  - MODIFIES
+	- What does the method DO 
+	  - EFFECTS
+  - Use
+  - Test
+  - Implement
