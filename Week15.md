@@ -118,5 +118,50 @@
 	- What does the method DO 
 	  - EFFECTS
   - Use
+	- think of all the range of usage scenarios
   - Test
+    - Black Box Testing is testing w/o knowing any of the internal structure of the system being tested, and we are interested in testing the functionality of the software.
+	- White Box Testing is actually testing the internal structure of the system. want to test the actual details of the implementation. 
+	- J Unit
+	  - annotations @Test @Before 
+	  - assertTrue(t.isFacingLeft());
+	  - if assert fails, the test will be stopped at that line and will not execute the rest
+	- Testability
+	  - J Unit is only seeing the public interface of the abstraction, since its a outside caller into the abstraction, sol it can't check the implementation details
+	  - Can't check the field private to the abstraction
+	  - This is Black Box Testing
+	  - Debugging
+	    - Typo
+		- Should introduce bugs (mutant) to see if test still pass to test for coverage
   - Implement
+    - first figure out the internal representation
+	  - e.g  collection: list, sets
+	  - list: arraylist, linked list
+	  - sets: hashset, treeset
+### Algorithm
+#### Motivation
+- Check if a network is connected
+- Driving direction
+- Can think of paths as sequence of decisions, formulate a plan
+- Sudoku puzzle can be solved as nodes can be partially completed puzzle
+#### Generic Graph Search
+- Goals
+  1. find everything findable from a given start vertex
+  2. don't explore anything twice
+- Generic Algo (given graph G, vertex S)
+  - initially s explored, all other vertices unexplored
+  - while possible:
+    - choose an edge (u,v) with
+	- u explored and v unexplored, if none, halt
+	- mark v explored
+	- v is explored iff G has a path from s to v
+#### BFS
+- explore nodes in "layers"
+- can compute shortest paths
+- can compute connected components of an undirected graph
+- using a queue (FIFO)
+#### DFS
+- explore aggressively like a maze, backtracking only when necessary
+- compute topological ordering of directed acyclic graph
+- compute connected components in directed graphs
+- using LIFO stack or via recursion	

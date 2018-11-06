@@ -19,5 +19,11 @@
 //		   returns balance+amt
 ```
 - Only talk about the effect, like adding them together, but not the implementation i.e: how do we add them
--
+- Example
+```java
+//REQUIRES: nothing (or just dont write it at all
+//MODIFIES: this
+//EFFECTS: inserts num if not already there, if num is there, does nothing
+public void insert (integer num){...}
+```
 
