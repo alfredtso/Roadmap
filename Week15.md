@@ -165,3 +165,44 @@
 - compute topological ordering of directed acyclic graph
 - compute connected components in directed graphs
 - using LIFO stack or via recursion	
+#### Overview:BFS
+- Graph G, start at vertex s
+- mark s explored
+- let Q = queue data structure, initialize with s
+- while Q !empty:
+	- remove first node of Q, call it v
+	- for each edge (v,w):
+		- if w unexplored
+			- mark w as explored
+			- add into Q (at the end) (therefore Breadth first )
+- Shortest Paths
+	- compute dist(v), fewest edges on a path from s to v
+	- initialize dist(v) = 0 if v =s and +inf if v != s
+	- when considering edge (v,w)
+	- if w is unexplored, then dist(w) = dist(v) + 1
+- Undirected Connectivity
+	- Let G = (V, E) be an undirected graph
+	- Formal definition: equivalence classes of the relation u ~ v iff E u - v path in G 
+	- Goal: compute all connected Q componenets
+	  - why? graph visualization - clustering 
+![slides]()
+
+#### Overview: DFS
+- Topological ordering of a directed graph G is a labelling f of G's nodes such that
+  1. the f(v)'s are the set {1,2,...,n}
+  2. (u,v) belongs to G => f(u) smaller than f(v)
+- Motivation
+  - Sequence tasks while respecting precedence constraints
+  - note: G has directed cycle => no topological ordering
+- Solution
+  - Every directed acyclic graph has a sink vertex
+  - Reason: if we follow N arcs, we are going to see N+1 vertices, by PH, repeated cycle
+- let v be a sink vertex of G
+- set f(v) = n 
+- recurse on G -{v}
+### Topological Sort via DFS
+![algo1](https://i.imgur.com/QeYYxrp.png)
+![algo](https://i.imgur.com/aldymiX.png)
+
+### Strongly Connected Components
+- Strong connected: if you can reach any point from any point

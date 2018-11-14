@@ -1,0 +1,19 @@
+- Declarative Programming
+- Versus imperative, just say what you want and let compyter figure out how to get 
+- We want to move towards more declarative
+- is also the use of math in programming 
+- also called programming without state, versus imperative: stateful
+- "program works today will work tmr"
+- Concept of identifier: is acharacter string used to reference entities during the execution of a program
+- Concept of variable in mem: in Oz, var are single assignment, FP essential
+- Concept of environment: is the correspondence betw the identifiers in the program and the var in mem. At every point in a program's execution, there is a well-defined environment. An env is also a function of one arg takes an identifier and return a var in mem.
+- Static scoping
+- you can redeclare identifier but only the last declaration matters and this is different from multuple assignment
+- tail recursion using accumlator
+- principle of communicating vases: decrese a variable and increase another same time
+- 2 arguement, one is accumulator and the recursive call is the last ops in the fun body
+- recursive fun is equ to a loop if tail recursive
+- we find the accumulator starting from an invariant using the principle of communicating vases
+- this is invariant programming and it is the only reasonable way to program loops
+- think loops in terms of invariant, and changing one part of the invariant forces the rest to changeas well
+- <List T> ::= nil | T '|' <List T>

@@ -15,9 +15,19 @@
 - [Week 12](https://github.com/alfredtso/Roadmap/blob/master/Week12.md)
 - [Week 13](https://github.com/alfredtso/Roadmap/blob/master/Week13.md)
 - [Week 14](https://github.com/alfredtso/Roadmap/blob/master/Week14.md)
+- [Week 15](https://github.com/alfredtso/Roadmap/blob/master/Week15.md)
+- [Week 16](https://github.com/alfredtso/Roadmap/blob/master/Week16.md)
 
 ## TODO
 - [ ] ProgramLang Hw7
 - [ ] Nand2Tertis Hw
 - [ ] ProgramLang Hw7
 - [ ] ProgramLang Hw7
+
+## Language
+- [Java]()
+
+## Interviews
+- Reverse linked-list
+- Finding duplicates in a list
+- Data Structures

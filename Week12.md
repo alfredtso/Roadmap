@@ -55,7 +55,7 @@
 						 (add1 rsf)))
 		  (define (fn-for-low todo rsf)
 			(cond [(empty? todo) rsf]
-				  [else
+		try		  [else
 				   (fn-for-wiz (first todo) (rest todo) rsf)]))]
 	(fn-for-wiz w empty 0)))
 ```
