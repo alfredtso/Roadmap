@@ -17,3 +17,28 @@
 - this is invariant programming and it is the only reasonable way to program loops
 - think loops in terms of invariant, and changing one part of the invariant forces the rest to changeas well
 - <List T> ::= nil | T '|' <List T>
+- <obtree T> ::= leaf | tree(key:T value:T left:<obtree T> right:<obtree T>)
+- Search Tree
+	- Lookup 
+	- Insert 
+	- Delete 
+- Spatial complexity
+	- execution time is temporal complexity
+	- memory yse is spatial complexity
+		- activve memory: total number of words in use by program at t
+		- memory comsumption: number of words allocated per second at time t 
+### Semantics
+1. translate the program into kernel language
+2. exe the translated program on the abstract machine
+	- {Fact 0 R} on the abstract machine 
+	- the contextual environment of a fun contains all the identifiers that are used  inside the fun but declared outside of the fun
+	- the procedure value is a closure which is a pair whose values are procedure code and the contextual environment(free variables) stored in memory
+
+### Abstract Machine
+Has 6 concepts
+- Memory
+- Environment
+- Semantic Instruction
+- Semantic stack
+- Execution state
+- Execution
