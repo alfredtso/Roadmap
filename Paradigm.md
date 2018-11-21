@@ -100,11 +100,14 @@ end,{B->b, X->x}]
 {b=true, x}) 
 // bind x to 1 and execution stops because the stack is empty
 ```
+
 - we have seen 4 instruction
-	- local <x> in <s> end (variable creation)
-	- <s1> <s2> (sequential compositoin)
-	- if <x> then <s1> else <s2> end (conditional
-	- <x> = <v> (assignment)
+```
+local <x> in <s> end (variable creation)
+<s1> <s2> (sequential compositoin)
+if <x> then <s1> else <s2> end (conditional
+<x> = <v> (assignment)
+``` 
 
 #### Semantic rules for kernel language instruct
 - Each instruction we will define rule in the abstract machine
@@ -116,38 +119,7 @@ end,{B->b, X->x}]
 - sequential composition
 	- Input state:([(Sa,Sb), S2, ...,Sn], sigma)
 	- Output state:([Sa, Sb, S2, ...,Sn], sigma)
-- local<x> in <s> end
+- local x in s end
 	- create a fresh new variable x in memory sigma
 	- Add the link {X->x} to the environment E 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
