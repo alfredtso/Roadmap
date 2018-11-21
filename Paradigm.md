@@ -42,3 +42,112 @@ Has 6 concepts
 - Semantic stack
 - Execution state
 - Execution
+
+#### Example
+```
+local X in
+  local B in
+	B=true
+	if B then X=1 else skip end
+  end
+end
+```
+```
+
+([local X in
+   local B in
+	B=true
+	if B then X=1 else skip end
+  end
+end,{}] // {} is empty env
+{}) // {} is empty mem.
+
+([local X in
+   local B in
+	B=true
+	if B then X=1 else skip end
+  end
+end,{X->x}] 
+{x})  
+
+// create a new variable x in memory
+// put the inner instruction on the stack and add X->x to its env
+
+([ 	B=true
+	if B then X=1 else skip end
+  end
+end,{B->b, X->x}] 
+{b, x}) 
+// same as what happen to local X in the above
+
+([ 	(B=true, {B->b, X->x}),
+	(if B then X=1 else skip end, {B->b, X->x})],
+{b, x}) 
+// split the sequential compositoin into its two parts and put the 2 instruction on the stack 
+
+
+([	(if B then X=1 else skip end, {B->b, X->x})],
+{b=true, x}) 
+// bind b to true in mem
+
+([	(X=1, {B->b, X->x})],
+{b=true, x}) 
+// read the value of B, and since B is true, we put the instruction after then on the stack
+// if B is false, then put after else
+// other value of B conditional raises an error
+
+([],
+{b=true, x}) 
+// bind x to 1 and execution stops because the stack is empty
+```
+- we have seen 4 instruction
+	- local <x> in <s> end (variable creation)
+	- <s1> <s2> (sequential compositoin)
+	- if <x> then <s1> else <s2> end (conditional
+	- <x> = <v> (assignment)
+
+#### Semantic rules for kernel language instruct
+- Each instruction we will define rule in the abstract machine
+- Each instruction takes one execution state as input and returns one execution state
+	- Execution state = semantic stack + memory
+- Skip
+	- input state: ([skip, E), S2, ...., Sn], sigma)
+	- Output state: ([S2, ...,Sn], sigma)
+- sequential composition
+	- Input state:([(Sa,Sb), S2, ...,Sn], sigma)
+	- Output state:([Sa, Sb, S2, ...,Sn], sigma)
+- local<x> in <s> end
+	- create a fresh new variable x in memory sigma
+	- Add the link {X->x} to the environment E 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
