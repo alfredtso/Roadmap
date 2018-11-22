@@ -123,3 +123,35 @@ if <x> then <s1> else <s2> end (conditional
 	- create a fresh new variable x in memory sigma
 	- Add the link {X->x} to the environment E 
 
+#### Dyanmic scoping versus static scoping
+```
+local P Q in
+	proc {Q X} {Browse stat(X)} end
+	proc {P X} {Q X} end
+	local Q in
+		proc {Q X} {Browse dyn(X)} end
+		{P hello}
+	end
+end
+```
+
+#### Single-assignment store
+- a set of store variable
+	- 1. sets of var that are equal but unbound
+	- 2. var bound to a number, record or procedure
+	- e.g {x1, x2=x3, x4 = a|x2} meaning x1 is unbound and x2 x3 are equal and unbound and x4 is bound to partial value
+
+- An **Environment E** is a mapping from variable id to entities in memory, as a set of pairs e.g{X->x, Y->y}, where X,Y are id and x,y refer to store entities
+- A **semantics statement** is a pair (S, E), S is a statement and E is env, the semantics statement relate S to what it references in the store.
+- An **execution state*** is a pair (ST, sigma), ST is a stack of semantic statements and sigma is single-assign store
+- A **computation** is a seq of execution states
+- a single transition in a computation is called a computation step. A step is atomic meaning there are no visible immediate states, as if its done "all at once"
+- Semantic stack can be in one of three run-time states:
+	- Runnable: ST can do a computation step
+	- Terminated: is empty
+	- Suspended: not empty, but cannot do any commputation step
+
+### Nonsuspendable statements
+1. **skip** statement
+	- 
+
