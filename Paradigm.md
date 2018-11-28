@@ -44,6 +44,7 @@ Has 6 concepts
 - Execution
 
 #### Example
+
 ```
 local X in
   local B in
@@ -52,6 +53,7 @@ local X in
   end
 end
 ```
+
 ```
 
 ([local X in
@@ -155,3 +157,19 @@ end
 1. **skip** statement
 	- 
 
+### Procedure semantics
+- Def
+	- Create the contextual environment
+	- Store the pair of procedure and contextual environment
+- Procedure Call
+	- Create a new environment by combining two parts
+		- The procedure's CE
+		- The formal arguments (identifiers in the procedure definition) which are made to ref the actual argument values
+	- Execute the procedure body with this new environment
+- Declarative World
+	- Creating and binding it are done separately
+	- Functional programming lang do them in one step 
+
+### Records and procedures
+- Symbolic language provide opertions to manipulate records, to add, remove or select fileds: to convert to a list and back
+- Procedure are better options than objects or function, because its simplier and can have any numbers of input or outputs

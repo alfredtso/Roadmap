@@ -4,6 +4,7 @@
 - can have cyclic
 - have zero or multuple arrow pointing into a single node 
 - cyclical graph doesnt show up in text well, usually quite messy
+
 # Algorithm
 ### Master method
 - number of subproblem in level j times the workdone for each subproblem

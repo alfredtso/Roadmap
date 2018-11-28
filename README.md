@@ -26,6 +26,7 @@
 
 ## Language
 - [Java]()
+- [Paradigm]()
 
 ## Interviews
 - Reverse linked-list
