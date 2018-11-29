@@ -1,0 +1,44 @@
+- Full store has 2 parts
+
+- Static/Context Environ
+- Dynamic environment refers to environment
+- `val x = e``` ~ ```<x>:=<v>`
+- in Haskell, list is also homogenous
+	- ++ for putter two list tgt, but slow
+	- : can be used to put it in front, [1,2,3] is just sugar for 1:2:3:[]
+	- !! can used to get stuff with index 0 based
+	- `head, tail, last, init, length, null, reverse, take, drop`
+	- take 3 [5, 4, 3, 2, 1] => [5, 4, 3]
+	- `elem` is called infix fx becuase ` 4 `elem` [3,4,5,6]`
+	- range: [1..20], ['a'..'z'], [3,6..20] => [3,6,9,...], doesnt work with float
+	- [13,26..] doesnt work because its lazy, instead do `take 10 (cycle [1,2,3])`
+	- or `take 10 (repeat 5)`
+	- list comprehension `[x*2 | x <- [1..10], x `mod` 7 == 3]`
+	- e.g `length' xs = sum [1 | _ <- xs]`
+	- `removeUpper st = [c | c <- st, c 'elem' ['A'..'Z']]`
+	- `[ [ x | x <- xs, even x ] | xs <- xss]`
+
+- Types in Haskell
+	- use command :t 'a' to inspect type of 'a'
+	- -> and * is haskell and ml way of separating param, not implying anythg
+	- `Int` is bounded has max and min, `Integer` is unbounded so can big, slower
+	- a is type variable and much like generics in other lang
+	- Helps clarify thinking and express program structure
+		- first step in writing in haskell is write down all the types, non-trivial
+	- looking at fx type can tell you a lot about what the fx can be used, before reading
+	- can find stuff based on the type you might expect
+
+- Typeclass
+	- Everything before => is called a class constraint
+	- elem has a type of `(Eq a) => a -> [a] -> Bool` because it uses == over a list to check
+	- Eq is used for types that support equality testing, the function its member (meaning the those have seen so far.. Int etc) are `==` and `/=` except function
+	- `Ord` covers `< > >= <=`, same as `Eq` doesnt apply to function
+	- `compare` takes two `Ord` member of same type and return `Ordering` which has `GT LT EQ`
+	- `Show` can represent members as strings, `Read` opposite of `Show`
+	- ` read "[3, 4]" ++ 3 => [3,4,3]` but `read "3"` error cause ghci cant infer the type of the result
+	- `Enum` members (succ and pred) are sequentially order typed `Bounded` members have bounds
+	- fromIntegral :: (Integral a, Num b) => a -> b, useful if we want `Integral` (Int, Integer) works with `Floating`
+	- 
+
+- Function application binds tighter than any binary operators.
+- . in haskell works much like pipe in UNIX f (g x) = (f . g) x
