@@ -42,3 +42,92 @@
 
 - Function application binds tighter than any binary operators.
 - . in haskell works much like pipe in UNIX f (g x) = (f . g) x
+- write from left and right easier to think, $ is like lambda
+- `:info Num` check info about the typeclass
+- pattern matching | is like a big if else tree but better style
+- Where bindings are a syntactic construct that let you bind to variables at the end of a function and the whole function can see them, including all the guards. Let bindings let you bind to variables anywhere and are expressions themselves, but are very local, so they don't span across guards.
+- `let <bindings> in <expression>` and let itself are expression, whereas bindings are syntactic constructs
+- if statement is also expression so you can use them anywhere
+- we can use ; to separate let statement
+- case expression is almost like pattern matching but case expression can be used anywhere
+
+```haskell
+div_mod x y = (x `div` y, x `mod` y)
+
+sort_pair x = if (fst x) < (snd x) then x else ((snd x), (fst x))
+
+getFirstNthDigit x n = x `div` 10^n
+
+numberofDigits :: Integer -> Integer
+numberofDigits x = toInteger(round(logBase 10 (fromIntegral x)) + 1)
+
+digs :: Integral x => x -> [x]
+digs 0 = []
+digs x = digs (x `div` 10) ++ [x `mod` 10]
+
+firstTwoDigit :: Integer -> Integer
+firstTwoDigit x
+  | (length . show $ x) >= 2 = read . take 2 . show $ x
+  | otherwise = error "less than 2 digits"
+
+kMultiplication :: Integer -> Integer -> Integer
+kMultiplication x y 
+  |  len == 1 = x
+  | otherwise = y
+  where len = length (digs x)
+      --(10^(digs x)) * kMultiplication 
+
+first :: (a, b, c) -> a
+first(x,_,_) = x
+
+second :: (a, b, c) -> b
+second(_,x,_) = x
+
+third :: (a, b, c) -> c
+third(_,_,x) = x
+
+length' :: (Num b) => [a] -> b
+length' [] = 0
+length' (_:xs) = 1 + length' xs
+
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell weight height
+  | bmi <= skinny = "1"
+  | bmi <= normal = "2"
+  | bmi <= fat    = "3"
+  where bmi = weight / height ^ 2
+        (skinny, normal, fat) = (18.5, 20.5, 22.5)
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ "." ++ [l]
+  where (f:_) = firstname
+        (l:_) = lastname
+
+calBmis :: (RealFloat a) => [(a, a)] -> [a]
+calBmis xs = [ bmi w h | (w, h) <- xs]
+  where bmi weight height = weight / height ^ 2
+
+calBmis' :: (RealFloat a) => [(a, a)] -> [a]
+calBmis' xs = [ bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+-- We could do this like we did in list compre like predicate, except it doesnt filter
+-- We omit the in because the visibility of the names is already predefined there
+-- we can use let in bindings in a predicate but will only be visible to that predicate
+
+
+cyclinder :: (RealFloat a) => a -> a -> a
+cyclinder r h = 
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^ 2
+    in sideArea + 2 * topArea
+
+describeList :: [a] -> String
+describeList xs  = "The list is" ++ case xs of [] -> "empty"
+                                               [x] -> "singleton"
+                                               xs -> "a long list"
+
+describeList' :: [a] -> String
+describeList' xs = "The list is" ++ what xs
+    where what [] = "empty"
+          what [x] = "single"
+          what (x:xs) = "long"
+```
