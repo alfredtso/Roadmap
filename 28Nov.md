@@ -47,6 +47,7 @@
 - pattern matching | is like a big if else tree but better style
 - Where bindings are a syntactic construct that let you bind to variables at the end of a function and the whole function can see them, including all the guards. Let bindings let you bind to variables anywhere and are expressions themselves, but are very local, so they don't span across guards.
 - `let <bindings> in <expression>` and let itself are expression, whereas bindings are syntactic constructs
+- the type of the whole Let-expression is the type of e
 - if statement is also expression so you can use them anywhere
 - we can use ; to separate let statement
 - case expression is almost like pattern matching but case expression can be used anywhere
