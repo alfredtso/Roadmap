@@ -25,3 +25,10 @@
 	- method inside static nested can only access static members in the outer
 [Some Example and Explanation](http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/8-List/nested-class.html)
 
+
+### Comparing super class and subclasses
+- Use `instance of` or `getClass()` ?
+- [SO](https://stackoverflow.com/questions/596462/any-reason-to-prefer-getclass-over-instanceof-when-generating-equals)
+
+### Abstact Class and Interface
+- [SO](https://stackoverflow.com/questions/1913098/what-is-the-difference-between-an-interface-and-abstract-class)
