@@ -32,3 +32,8 @@
 
 ### Abstact Class and Interface
 - [SO](https://stackoverflow.com/questions/1913098/what-is-the-difference-between-an-interface-and-abstract-class)
+
+### Observer Pattern
+- example Twitter
+- Tweeter: Subject, who tweet, addObservers and notify them on the list.You: Observer, subscriber, just deal with update.
+- needs to have a notify method inside of the notifyObserver to call update at Observers
