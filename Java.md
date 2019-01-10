@@ -37,3 +37,19 @@
 - example Twitter
 - Tweeter: Subject, who tweet, addObservers and notify them on the list.You: Observer, subscriber, just deal with update.
 - needs to have a notify method inside of the notifyObserver to call update at Observers
+
+### Iterator Pattern
+#### Custom iterators
+- An iterator is implemented as an ineer class of the collection, so can access private field
+- custom iterator implements the Iterator interface methods, and parameterised with type of element it will iterate, and maintains a pointer to keep track of the current position of the iteration.
+```java
+private class CustomIterator<TheElement> implements Iterator<TheElement> {
+	private Placeholder cursor;
+
+	@Override
+	public boolean hasNext() {}
+
+	@Override
+	public TheElement next() {}
+}
+```
